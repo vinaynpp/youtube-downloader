@@ -214,14 +214,7 @@ class YouTubeDownloader
 
         $page_html = $this->getPageHtml($video_id);
 
-        if (strpos($page_html, 'We have been receiving a large volume of requests') !== false ||
-            strpos($page_html, 'systems have detected unusual traffic') !== false ||
-            strpos($page_html, '/recaptcha/') !== false) {
 
-            $this->error = 'HTTP 429: Too many requests.';
-
-            return array();
-        }
 
         // get JSON encoded parameters that appear on video pages
         $json = $this->getPlayerResponse($page_html);
